@@ -1,0 +1,15 @@
+version: '3'
+services:
+  awesome_app:
+    build: ./backend
+    tty: true
+    volumes:
+      - './backend/:/usr/src/awesomeapp'
+      - './backend/static/:/usrc/src/awesomeapp/static'
+  cache_server:
+    build: ./nginx
+    tty: true
+    links:
+      - awesome_app
+    ports:
+      - '8080:8080'
